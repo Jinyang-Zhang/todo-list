@@ -1,6 +1,8 @@
-import React, { FunctionComponent } from "react";
+import React, { useContext, FunctionComponent } from "react";
 import styled from "styled-components";
+import { TodoListDataContext } from "../useTodoListData";
 import TodoItem from "../components/TodoItem";
+import { TodoListItem } from "../types";
 
 const ListLayout = styled.ul`
   margin-left: 0px;
@@ -10,11 +12,11 @@ const ListLayout = styled.ul`
 `;
 
 const TodoList: FunctionComponent = () => {
-  const items: Record<string, string>[] = [{ a: "learn" }];
+  const todoListData = useContext(TodoListDataContext);
   return (
     <ListLayout>
-      {items.map((item, index) => (
-        <TodoItem></TodoItem>
+      {todoListData?.map((item: TodoListItem) => (
+        <TodoItem todoItem={item} />
       ))}
     </ListLayout>
   );

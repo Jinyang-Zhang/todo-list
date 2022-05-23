@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
+import { TodoListItem } from "../types";
 
 const ItemLayout = styled.li`
   list-style: none;
@@ -31,13 +32,12 @@ const ItemLayout = styled.li`
   }
 `;
 
-const TodoItem: FunctionComponent = () => {
-  const text: string = "aaaaaaaaaaaa";
+const TodoItem: FunctionComponent<{ todoItem: TodoListItem }> = ({ todoItem }) => {
   return (
     <ItemLayout>
       <label>
         <input type="checkbox" />
-        <span>{text}</span>
+        <span>{todoItem.text}</span>
       </label>
       <button>X</button>
     </ItemLayout>
