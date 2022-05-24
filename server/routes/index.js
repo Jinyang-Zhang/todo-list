@@ -11,12 +11,25 @@ router.all("*", function(req, res, next) {
 
 router.get("/", (req, res, next) => {
   try {
-    console.log('get')
       db.query("select * from todolist", [], function(results, fields) {
           res.json({ message: "sucessful", results, fields });
       });
   } catch (error) {
     console.log(error)
+      res.json({ error });
+  }
+});
+
+router.post("/addItem", (req, res, next) => {
+  try {
+      db.query(
+          "insert into todolist(text) values(?)", [req.body.text],
+          function(results, fields) {
+              // 以json的形式返回
+              res.json({ message: "成功", results, fields });
+          }
+      );
+  } catch (error) {
       res.json({ error });
   }
 });

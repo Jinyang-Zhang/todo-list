@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import styled from "styled-components";
+import {addItem} from "../api"
 
 const PageLayout = styled.div`
   width: 580px;
@@ -25,11 +26,18 @@ const PageLayout = styled.div`
 `;
 
 const TodoHeader: FunctionComponent = () => {
+  const inputText = useRef<HTMLInputElement>(null);
+  const submitHandler = () =>{
+    if (inputText && inputText.current && inputText.current.value !== "") {
+      addItem(inputText.current.value);
+      inputText.current.value = "";
+    }
+  }
   return (
     <PageLayout>
-      <button>add</button>
+      <button onClick={submitHandler}>add</button>
       <form>
-        <input placeholder="What needs to be done?" />
+        <input ref={inputText} placeholder="What needs to be done?" />
       </form>
     </PageLayout>
   );
