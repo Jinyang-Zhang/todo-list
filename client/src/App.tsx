@@ -14,7 +14,9 @@ const App: FunctionComponent = () => {
   ]);
   useEffect(() => {
     queryData()
-      .then((res) => setData(res.results))
+      .then((res) => {
+        setData(res.results);
+      })
       .catch((err) => console.log(err));
   }, []);
   return (

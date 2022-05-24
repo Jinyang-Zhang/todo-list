@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import { TodoListItem } from "../types";
+import { deleteItem } from "../api";
 
 const ItemLayout = styled.li`
   list-style: none;
@@ -32,14 +33,19 @@ const ItemLayout = styled.li`
   }
 `;
 
-const TodoItem: FunctionComponent<{ todoItem: TodoListItem }> = ({ todoItem }) => {
+const TodoItem: FunctionComponent<{ todoItem: TodoListItem }> = ({
+  todoItem,
+}) => {
+  const removeItem = (id: number) => {
+    deleteItem(id);
+  };
   return (
     <ItemLayout>
       <label>
         <input type="checkbox" />
         <span>{todoItem.text}</span>
       </label>
-      <button>X</button>
+      <button onClick={() => removeItem(todoItem.id)}>X</button>
     </ItemLayout>
   );
 };
