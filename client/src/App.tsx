@@ -8,13 +8,13 @@ const App: FunctionComponent = () => {
   const [data, setData] = useState([
     {
       id: 1,
-      text: "learn AWS",
-      complete: false,
+      text: "learn",
+      complete: 1,
     },
   ]);
   useEffect(() => {
     queryData()
-      .then((res) => setData(res))
+      .then((res) => setData(res.results))
       .catch((err) => console.log(err));
   }, []);
   return (

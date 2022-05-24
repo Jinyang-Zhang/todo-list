@@ -16,7 +16,7 @@ const TodoList: FunctionComponent = () => {
   return (
     <ListLayout>
       {todoListData?.map((item: TodoListItem) => (
-        <TodoItem todoItem={item} />
+        <TodoItem key={item.id+item.text} todoItem={item} />
       ))}
     </ListLayout>
   );
