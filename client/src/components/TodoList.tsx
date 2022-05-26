@@ -24,7 +24,6 @@ const TodoList: FunctionComponent<{ items: TodoListItem[] }> = ({ items }) => {
 };
 
 const mapStateToProps = (state: ApplicationState) => {
-  console.log("mapStateToProps:" + state.items.data[0]);
   return {
     items: state.items.data,
   };

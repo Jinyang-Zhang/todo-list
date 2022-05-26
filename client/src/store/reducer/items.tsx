@@ -9,7 +9,7 @@ function items(state = initialState, action: TodoListActionTypes) {
   switch (action.type) {
     case ItemsTypes.INIT_ITEM:
       return {
-        data: action.data,
+        data: action.data && [state.data, ...action.data],
       };
 
     case ItemsTypes.ADD_ITEM:

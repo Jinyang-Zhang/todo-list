@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { addItem } from "../store/actions";
 import { addTodoItem } from "../api";
 
-const PageLayout = styled.div`
+const HeaderLayout = styled.div`
   width: 580px;
   margin: 0 auto;
   & button {
@@ -40,12 +40,12 @@ const TodoHeader: FunctionComponent< {addItem : (text: string)=>void}> = ({addIt
     }
   }
   return (
-    <PageLayout>
+    <HeaderLayout>
       <button onClick={submitHandler}>add</button>
       <form>
         <input ref={inputText} placeholder="What needs to be done?" />
       </form>
-    </PageLayout>
+    </HeaderLayout>
   );
 };
 
