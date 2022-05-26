@@ -1,8 +1,10 @@
-import React, { useContext, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import styled from "styled-components";
-import { TodoListDataContext } from "../useTodoListData";
+
 import TodoItem from "../components/TodoItem";
-import { TodoListItem } from "../types";
+import { TodoListItem, ApplicationState } from "../types";
 
 const ListLayout = styled.ul`
   margin-left: 0px;
@@ -11,15 +13,23 @@ const ListLayout = styled.ul`
   padding: 0px;
 `;
 
-const TodoList: FunctionComponent = () => {
-  const todoListData = useContext(TodoListDataContext);
+const TodoList: FunctionComponent<{ items: TodoListItem[] }> = ({ items }) => {
   return (
     <ListLayout>
-      {todoListData?.map((item: TodoListItem) => (
-        <TodoItem key={item.id+item.text} todoItem={item} />
+      {items?.map((item: TodoListItem) => (
+        <TodoItem key={item.id + item.text} item={item} />
       ))}
     </ListLayout>
   );
 };
 
-export default TodoList;
+const mapStateToProps = (state: ApplicationState) => {
+  console.log("mapStateToProps:" + state.items.data[0]);
+  return {
+    items: state.items.data,
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

@@ -1,28 +1,23 @@
 import React, { FunctionComponent } from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { Provider } from "react-redux";
+import store from "./store/store";
 import { queryData } from "./api";
-import { TodoListDataProvider } from "./useTodoListData";
 import Page from "./pages";
+import { initItem } from "./store/actions";
 
 const App: FunctionComponent = () => {
-  const [data, setData] = useState([
-    {
-      id: 1,
-      text: "learn",
-      complete: 1,
-    },
-  ]);
   useEffect(() => {
     queryData()
       .then((res) => {
-        setData(res.results);
+        store.dispatch(initItem(res.results));
       })
       .catch((err) => console.log(err));
   }, []);
   return (
-    <TodoListDataProvider todoListData={data}>
+    <Provider store={store}>
       <Page />
-    </TodoListDataProvider>
+    </Provider>
   );
 };
 

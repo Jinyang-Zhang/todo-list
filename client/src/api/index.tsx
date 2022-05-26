@@ -1,7 +1,7 @@
 export const queryData = () =>
   fetch("http://localhost:3001/", { method: "get" }).then((res) => res.json());
 
-export const addItem = (data: string) => {
+export const addTodoItem = (data: string) => {
   fetch("http://localhost:3001/addItem", {
     method: "post",
     headers: {
@@ -11,7 +11,7 @@ export const addItem = (data: string) => {
   }).then((res) => res.json());
 };
 
-export const deleteItem = (data: number) => {
+export const deleteTodoItem = (data: number) => {
   fetch("http://localhost:3001/deleteItem", {
     method: "DELETE",
     headers: {

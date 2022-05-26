@@ -1,6 +1,11 @@
 import React, { FunctionComponent, useRef } from "react";
+import { connect } from "react-redux";
+import { Dispatch, bindActionCreators } from "redux";
+
+import { ApplicationState } from "../types";
 import styled from "styled-components";
-import {addItem} from "../api"
+import { addItem } from "../store/actions";
+import { addTodoItem } from "../api";
 
 const PageLayout = styled.div`
   width: 580px;
@@ -25,11 +30,12 @@ const PageLayout = styled.div`
   }
 `;
 
-const TodoHeader: FunctionComponent = () => {
+const TodoHeader: FunctionComponent< {addItem : (text: string)=>void}> = ({addItem}) => {
   const inputText = useRef<HTMLInputElement>(null);
   const submitHandler = () =>{
     if (inputText && inputText.current && inputText.current.value !== "") {
       addItem(inputText.current.value);
+      addTodoItem(inputText.current.value);
       inputText.current.value = "";
     }
   }
@@ -43,4 +49,12 @@ const TodoHeader: FunctionComponent = () => {
   );
 };
 
-export default TodoHeader;
+const mapStateToProps = (state: ApplicationState) => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    addItem: bindActionCreators(addItem, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoHeader);

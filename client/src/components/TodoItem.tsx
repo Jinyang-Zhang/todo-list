@@ -1,7 +1,11 @@
 import React, { FunctionComponent } from "react";
+import { connect } from "react-redux";
+import { Dispatch, bindActionCreators } from "redux";
 import styled from "styled-components";
+
 import { TodoListItem } from "../types";
-import { deleteItem } from "../api";
+import { deleteTodoItem } from "../api";
+import { removeItem } from "../store/actions";
 
 const ItemLayout = styled.li`
   list-style: none;
@@ -33,21 +37,30 @@ const ItemLayout = styled.li`
   }
 `;
 
-const TodoItem: FunctionComponent<{ todoItem: TodoListItem }> = ({
-  todoItem,
-}) => {
-  const removeItem = (id: number) => {
-    deleteItem(id);
+const TodoItem: FunctionComponent<{
+  item: TodoListItem;
+  removeItem: (id: number) => void;
+}> = ({ item, removeItem }) => {
+  const { id, text } = item;
+  const removeTodoItem = (id: number) => {
+    removeItem(id);
+    deleteTodoItem(id);
   };
   return (
     <ItemLayout>
       <label>
         <input type="checkbox" />
-        <span>{todoItem.text}</span>
+        <span>{text}</span>
       </label>
-      <button onClick={() => removeItem(todoItem.id)}>X</button>
+      <button onClick={() => removeTodoItem(id)}>X</button>
     </ItemLayout>
   );
 };
 
-export default TodoItem;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  removeItem: bindActionCreators(removeItem, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
