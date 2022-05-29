@@ -4,7 +4,6 @@ export enum ItemsTypes {
   REMOVE_ITEM = "REMOVE_ITEM",
 }
 export interface ItemsState {
-  idNumber: number;
   data: TodoListItem[];
 }
 export interface TodoListActionTypes {

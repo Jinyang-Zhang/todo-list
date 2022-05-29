@@ -1,7 +1,6 @@
 import { ItemsState, ItemsTypes, TodoListActionTypes } from "../../types";
 
 const initialState: ItemsState = {
-  idNumber: 0,
   data: [],
 };
 
@@ -14,11 +13,10 @@ function items(state = initialState, action: TodoListActionTypes) {
 
     case ItemsTypes.ADD_ITEM:
       return {
-        idNumber: state.idNumber + 1,
         data: [
           ...state.data,
           {
-            id: state.idNumber,
+            id: state.data.length + 1,
             text: action.payload?.text,
             complete: false,
           },
@@ -29,6 +27,7 @@ function items(state = initialState, action: TodoListActionTypes) {
       return {
         data: state.data.filter((item) => item.id !== action.payload?.id),
       };
+
 
     default:
       return state;
