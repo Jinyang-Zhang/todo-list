@@ -51,4 +51,45 @@ router.delete("/deleteItem", (req, res, next) => {
   }
 });
 
+router.delete("/deleteCompletedItem", (req, res, next) => {
+  try {
+    db.query(
+      "delete from todolist where complete = 1",
+      function (results, fields) {
+        res.json({ message: "sucessful", results, fields });
+      }
+    );
+  } catch (error) {
+    res.json({ error });
+  }
+});
+
+router.post("/updateItem", (req, res, next) => {
+  try {
+    db.query(
+      "update todolist set complete=? where id = ?",
+      [req.body.complete, req.body.id],
+      function (results, fields) {
+        res.json({ message: "sucessful", results, fields });
+      }
+    );
+  } catch (error) {
+    res.json({ error });
+  }
+});
+
+router.post("/updateAllItem", (req, res, next) => {
+  try {
+    db.query(
+      "update todolist set complete=?",
+      [req.body.complete],
+      function (results, fields) {
+        res.json({ message: "sucessful", results, fields });
+      }
+    );
+  } catch (error) {
+    res.json({ error });
+  }
+});
+
 module.exports = router;

@@ -3,6 +3,7 @@ import React, { FunctionComponent } from "react";
 import PageLayout from "../components/PageLayout";
 import TodoHeader from "../components/TodoHeader";
 import TodoList from "../components/TodoList";
+import TodoFooter from "../components/TodoFooter";
 
 const Page: FunctionComponent = () => {
   return (
@@ -11,6 +12,7 @@ const Page: FunctionComponent = () => {
       <div>
         <TodoHeader />
         <TodoList />
+        <TodoFooter/>
       </div>
     </PageLayout>
   );

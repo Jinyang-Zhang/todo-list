@@ -18,7 +18,7 @@ function items(state = initialState, action: TodoListActionTypes) {
           {
             id: state.data.length + 1,
             text: action.payload?.text,
-            complete: false,
+            complete: 0,
           },
         ],
       };
@@ -28,6 +28,27 @@ function items(state = initialState, action: TodoListActionTypes) {
         data: state.data.filter((item) => item.id !== action.payload?.id),
       };
 
+    case ItemsTypes.CLEAR_COMPLETED_ITEM:
+      return {
+        data: state.data.filter((item) => item.complete === 0),
+      };
+
+    case ItemsTypes.TOGGLE_ITEM:
+      return {
+        data: state.data.map((item) =>
+          item.id === action.payload?.id
+            ? { ...item, complete: item.complete === 0 ? 1 : 0 }
+            : item
+        ),
+      };
+
+    case ItemsTypes.TOGGLE_ALL_ITEM:
+      return {
+        data: state.data.map((item) => ({
+          ...item,
+          complete: action.payload?.complete,
+        })),
+      };
 
     default:
       return state;

@@ -22,3 +22,21 @@ export const removeItem = (id: number) => ({
     id,
   },
 });
+
+export const toggleItem = (id: number) => ({
+  type: ItemsTypes.TOGGLE_ITEM,
+  payload: {
+    id,
+  },
+});
+
+export const toggleAllItem = (complete: number) => ({
+  type: ItemsTypes.TOGGLE_ALL_ITEM,
+  payload: {
+    complete,
+  },
+});
+
+export const clearCompletedItem = () => ({
+  type: ItemsTypes.CLEAR_COMPLETED_ITEM,
+});
