@@ -40,8 +40,10 @@ router.post("/addItem", (req, res, next) => {
 router.delete("/deleteItem", (req, res, next) => {
   try {
     db.query(
-      "delete from todolist where id = ?",
-      [req.body.id],
+      req
+        ? "delete from todolist where id = ?"
+        : "delete from todolist where complete = 1",
+      req && [req.body.id],
       function (results, fields) {
         res.json({ message: "sucessful", results, fields });
       }
