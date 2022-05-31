@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 import styled from "styled-components";
 
-import { TodoListItem, ApplicationState } from "../types";
-import { deleteTodoItem, updateTodoItem } from "../api";
-import { removeItem, toggleItem } from "../store/actions";
+import { TodoListItem, ApplicationState } from "../../types";
+import { deleteTodoItem, updateTodoItem } from "../../api";
+import { removeItem, toggleItem } from "../../store/action/items";
 
 const ItemLayout = styled.li`
   list-style: none;

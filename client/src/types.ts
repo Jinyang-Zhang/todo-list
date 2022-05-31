@@ -13,22 +13,22 @@ export enum VisibilityFilters {
   UPDATE_FILTER = "UPDATE_FILTER",
 }
 
-export interface FilterActionTypes {
+export type FilterActionTypes = {
   type: string;
   payload: {
     filter: string;
   };
 }
-export interface ItemsState {
+export type ItemsState = {
   data: TodoListItem[];
 }
-export interface TodoListActionTypes {
+export type TodoListActionTypes = {
   type: string;
   payload?: TodoListItem;
   data?: TodoListItem[];
 }
 
-export interface ApplicationState {
+export type ApplicationState = {
   items: ItemsState;
   filterState: string;
 }

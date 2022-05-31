@@ -1,4 +1,4 @@
-import { ItemsTypes, TodoListItem } from "../types";
+import { ItemsTypes, TodoListItem } from "../../types";
 
 export const initItem = (data: TodoListItem[]) => {
   return {

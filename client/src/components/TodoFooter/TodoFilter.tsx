@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-import * as filterActions from "../../store/filter";
+
+import * as filterActions from "../../store/action/filter";
 import { ApplicationState } from "../../types";
 
-interface DispatchProps {
+type DispatchProps = {
   updateFilter(filter: string): void;
 }
 
-interface OwnProps {
+type OwnProps = {
   children: string;
   filter: string;
 }

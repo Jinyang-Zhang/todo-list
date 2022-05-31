@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import styled from "styled-components";
 
-import TodoItem from "../components/TodoItem";
-import { TodoListItem, ApplicationState, VisibilityFilters } from "../types";
+import TodoItem from "../TodoItem";
+import { TodoListItem, ApplicationState, VisibilityFilters } from "../../types";
 
 const ListLayout = styled.ul`
   margin-left: 0px;

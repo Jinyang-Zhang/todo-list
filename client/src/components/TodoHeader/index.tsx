@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useRef } from "react";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
-
-import { ApplicationState } from "../types";
 import styled from "styled-components";
-import { addItem } from "../store/actions";
-import { addTodoItem } from "../api";
+
+import { ApplicationState } from "../../types";
+import { addItem } from "../../store/action/items";
+import { addTodoItem } from "../../api";
 
 const HeaderLayout = styled.div`
   width: 580px;

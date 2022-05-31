@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from "react";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
-import store from "./store/store";
+
+import store from "./store";
 import { queryData } from "./api";
 import Page from "./pages";
-import { initItem } from "./store/actions";
+import { initItem } from "./store/action/items";
 
 const App: FunctionComponent = () => {
   useEffect(() => {

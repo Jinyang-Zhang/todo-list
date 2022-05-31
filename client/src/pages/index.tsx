@@ -5,10 +5,12 @@ import TodoHeader from "../components/TodoHeader";
 import TodoList from "../components/TodoList";
 import TodoFooter from "../components/TodoFooter";
 
+const TODOS = "todos"
+
 const Page: FunctionComponent = () => {
   return (
     <PageLayout>
-      <h1>todos</h1>
+      <h1>{TODOS}</h1>
       <div>
         <TodoHeader />
         <TodoList />

@@ -11,7 +11,7 @@ export const addTodoItem = (data: string) => {
   }).then((res) => res.json());
 };
 
-export const deleteTodoItem = (data: number) => {
+export const deleteTodoItem = (data?: number) => {
   fetch("http://localhost:3001/deleteItem", {
     method: "DELETE",
     headers: {
