@@ -30,11 +30,6 @@ const InputLayout = styled.input`
 `;
 
 const FilterLayout = styled.div`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  right: 0;
-  left: 700px;
   cursor: pointer;
   & > * {
     margin: 0 10px;
@@ -47,7 +42,6 @@ const FilterLayout = styled.div`
 `;
 
 const ButtonLayout = styled.button<FooterProps>`
-  position: relative;
   border: none;
   color: rgb(126, 124, 124);
   background-color: #fff;

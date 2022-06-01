@@ -35,3 +35,7 @@ services:
       MYSQL_ROOT_PASSWORD: TWzjy-19950825!?
       MYSQL_DATABASE: todoList
     container_name: 'docker-todo-mysql'
+    volumes:
+      - ../dataBase/mysql/log:/var/log/mysql
+      - ../dataBase/mysql/data:/var/lib/mysql
+      - ../dataBase/mysql/conf:/etc/mysql/conf.d
