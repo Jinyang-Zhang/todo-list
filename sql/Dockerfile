@@ -1,5 +1,7 @@
 FROM mysql
 
-COPY todolist*.sql /docker-entrypoint-initdb.d/
+WORKDIR /sql
+
+# COPY todolist*.sql /docker-entrypoint-initdb.d/
 
 COPY . /sql/
