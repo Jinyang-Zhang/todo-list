@@ -39,7 +39,7 @@ const ItemLayout = styled.li`
 
 const TodoItem: FunctionComponent<{
   item: TodoListItem;
-  toggleItem: (id: number) => void;
+  toggleItem: (id: number, complete: number) => void;
   removeItem: (id: number) => void;
 }> = ({ item, toggleItem, removeItem }) => {
   const { id, text, complete } = item;
@@ -48,8 +48,9 @@ const TodoItem: FunctionComponent<{
     deleteTodoItem(id);
   };
   const toggleTodoItem = (id: number, complete: number) => {
-    toggleItem(id);
-    updateTodoItem(id, complete === 0 ? 1 : 0);
+    const completeStatus = complete === 0 ? 1 : 0;
+    toggleItem(id, completeStatus);
+    updateTodoItem(id, completeStatus);
   };
   return (
     <ItemLayout>

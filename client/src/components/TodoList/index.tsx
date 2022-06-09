@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import styled from "styled-components";
 
+import { filterItems } from "../../utils/filterItems";
 import TodoItem from "../TodoItem";
-import { TodoListItem, ApplicationState, VisibilityFilters } from "../../types";
+import { TodoListItem, ApplicationState } from "../../types";
 
 const ListLayout = styled.ul`
   margin-left: 0px;
@@ -22,20 +23,10 @@ const TodoList: FunctionComponent<{ items: TodoListItem[] }> = ({ items }) => {
     </ListLayout>
   );
 };
-const filterItems = (items: TodoListItem[], filter: string) => {
-  switch (filter) {
-    case VisibilityFilters.SHOW_ACTIVE:
-      return items.filter((item) => item.complete===0);
-    case VisibilityFilters.SHOW_COMPLETED:
-      return items.filter((item) => item.complete===1);
-    default:
-      return items;
-  }
-};
+
 const mapStateToProps = (state: ApplicationState) => {
   return {
     items: filterItems(state.items.data, state.filterState),
-    filterState: state.filterState,
   };
 };
 

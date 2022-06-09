@@ -10,17 +10,13 @@ import { addTodoItem } from "../../api";
 const HeaderLayout = styled.div`
   width: 580px;
   margin: 0 auto;
-  & button {
-    margin-top: 9px;
-    margin-right: 5px;
-    float: right;
-  }
+  display: flex;
+  justify-content: space-between;
   & input {
     width: 520px;
     height: 33px;
     border: 1px solid #ddd;
     font: 400 30px Arial;
-    outline: none !important;
     &:focus {
       outline: none;
       border: 1px solid rgba(82, 168, 236, 0.8);
@@ -30,21 +26,23 @@ const HeaderLayout = styled.div`
   }
 `;
 
-const TodoHeader: FunctionComponent< {addItem : (text: string)=>void}> = ({addItem}) => {
+const TodoHeader: FunctionComponent<{ addItem: (text: string) => void }> = ({
+  addItem,
+}) => {
   const inputText = useRef<HTMLInputElement>(null);
-  const submitHandler = () =>{
+  const submitHandler = () => {
     if (inputText && inputText.current && inputText.current.value !== "") {
       addItem(inputText.current.value);
       addTodoItem(inputText.current.value);
       inputText.current.value = "";
     }
-  }
+  };
   return (
     <HeaderLayout>
-      <button onClick={submitHandler}>add</button>
       <form>
         <input ref={inputText} placeholder="What needs to be done?" />
       </form>
+      <button onClick={submitHandler}>add</button>
     </HeaderLayout>
   );
 };

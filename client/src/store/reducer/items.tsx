@@ -37,7 +37,7 @@ function items(state = initialState, action: TodoListActionTypes) {
       return {
         data: state.data.map((item) =>
           item.id === action.payload?.id
-            ? { ...item, complete: item.complete === 0 ? 1 : 0 }
+            ? { ...item, complete: action.payload.complete }
             : item
         ),
       };

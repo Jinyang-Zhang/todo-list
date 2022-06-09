@@ -3,13 +3,11 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { Dispatch, bindActionCreators } from "redux";
 
+import { filterItems } from "../../utils/filterItems";
 import TodoFilter from "./TodoFilter";
 import { ApplicationState, TodoListItem, VisibilityFilters } from "../../types";
 import { clearCompletedItem, toggleAllItem } from "../../store/action/items";
-import {
-  updateAllTodoItem,
-  deleteCompletedTodoItem,
-} from "../../api";
+import { updateAllTodoItem, deleteCompletedTodoItem } from "../../api";
 
 type FooterProps = {
   doneCounter: number;
@@ -105,19 +103,8 @@ const TodoFooter: FunctionComponent<{
   );
 };
 
-const filterItems = (items: TodoListItem[], filter: string) => {
-  switch (filter) {
-    case VisibilityFilters.SHOW_ACTIVE:
-      return items.filter((item) => item.complete === 0);
-    case VisibilityFilters.SHOW_COMPLETED:
-      return items.filter((item) => item.complete === 1);
-    default:
-      return items;
-  }
-};
 const mapStateToProps = (state: ApplicationState) => ({
   items: filterItems(state.items.data, state.filterState),
-  filterState: state.filterState,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

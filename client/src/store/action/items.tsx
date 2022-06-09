@@ -23,10 +23,11 @@ export const removeItem = (id: number) => ({
   },
 });
 
-export const toggleItem = (id: number) => ({
+export const toggleItem = (id: number, complete: number) => ({
   type: ItemsTypes.TOGGLE_ITEM,
   payload: {
     id,
+    complete,
   },
 });
 
